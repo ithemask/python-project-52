@@ -17,6 +17,7 @@ DEBUG = getenv('DEBUG')
 ALLOWED_HOSTS = [
     'webserver',
     '127.0.0.1',
+    'task-manager-34z9.onrender.com',
 ]
 
 INSTALLED_APPS = [
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
+    'django_bootstrap_icons',
     'task_manager',
 ]
 
@@ -33,6 +36,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

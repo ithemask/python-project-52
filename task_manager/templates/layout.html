@@ -22,23 +22,53 @@
           </a>
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="{% url 'user-list' %}" class="nav-link text-white">
                 {% bs_icon 'people-fill' size='1.5em' %}
                 {% translate 'Users' %}
               </a>
             </li>
+            {% if user.is_authenticated %}
             <li>
-              <a href="#" class="nav-link text-white">
-                {% bs_icon 'person-fill-check' size='1.5em' %}
-                {% translate 'Login' %}
+              <a href="{% url 'status-list' %}" class="nav-link text-white">
+                {% bs_icon 'flag-fill' size='1.5em' %}
+                {% translate 'Statuses' %}
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="{% url 'label-list' %}" class="nav-link text-white">
+                {% bs_icon 'geo-alt-fill' size='1.5em' %}
+                {% translate 'Labels' %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'task-list' %}" class="nav-link text-white">
+                {% bs_icon 'clipboard-check-fill' size='1.5em' %}
+                {% translate 'Tasks' %}
+              </a>
+            </li>
+            <li>
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link text-white">
+                  {% bs_icon 'door-open-fill' size='1.5em' %}
+                  {% translate 'Log out' %}
+                </button>
+              </form>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'login' %}" class="nav-link text-white">
+                {% bs_icon 'key-fill' size='1.5em' %}
+                {% translate 'Log in' %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'user-create' %}" class="nav-link text-white">
                 {% bs_icon 'person-fill-add' size='1.5em' %}
                 {% translate 'Sign up' %}
               </a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>

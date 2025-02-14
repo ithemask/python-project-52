@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <div class="my-4">{% bootstrap_messages %}</div>
+  <h1 class="my-4">{% translate 'Access' %}</h1>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button _('Log in') button_type='submit' %}
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">{% translate 'Delete account' %}</h1>
+  <p>
+    {% blocktranslate with full_name=user.get_full_name %}
+    Are you sure you want to delete {{ full_name }}?
+    {% endblocktranslate %}
+  </p>
+  <form action="{% url 'user-delete' user.id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button _('Yes, delete') button_type='submit' button_class='btn-danger' %}
+  </form>
+</div>
+{% endblock %}

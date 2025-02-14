@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load bootstrap_icons %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <div class="my-4">{% bootstrap_messages %}</div>
+  <h1 class="my-4">{% translate 'Users' %}</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>{% translate 'Username' %}</th>
+        <th>{% translate 'Full name' %}</th>
+        <th>{% translate 'Created' %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user_list %}
+      <tr class="align-middle">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.get_full_name }}</td>
+        <td>{{ user.date_joined|date:'d.m.Y G:i' }}</td>
+        <td>
+          <a href="{% url 'user-update' user.id %}" class="text-decoration-none">
+            {% bs_icon 'pen-fill' size='1em' %}
+            {% translate 'Update' %}
+          </a>
+          <br>
+          <a href="{% url 'user-delete' user.id %}" class="text-decoration-none">
+            {% bs_icon 'x-circle-fill' size='1em' %}
+            {% translate 'Delete' %}
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,1 +1,11 @@
 {% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <div class="my-4">{% bootstrap_messages %}</div>
+</div>
+{% endblock %}

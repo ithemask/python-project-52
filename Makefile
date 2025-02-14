@@ -10,3 +10,5 @@ start-prod:
 	uv run python -m gunicorn task_manager.asgi:application -k uvicorn.workers.UvicornWorker
 lint:
 	uv run ruff check
+test:
+	uv run python manage.py test

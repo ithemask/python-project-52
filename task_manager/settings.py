@@ -1,8 +1,8 @@
 import dj_database_url
-from pathlib import Path
+from dotenv import load_dotenv
 from os import getenv
 from os.path import join
-from dotenv import load_dotenv
+from pathlib import Path
 
 
 load_dotenv()
@@ -15,6 +15,7 @@ SECRET_KEY = getenv('SECRET_KEY')
 DEBUG = getenv('DEBUG')
 
 ALLOWED_HOSTS = [
+    'testserver',
     'webserver',
     '127.0.0.1',
     'task-manager-34z9.onrender.com',
@@ -73,16 +74,10 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': {
+            'min_length': 3,
+        },
     },
 ]
 

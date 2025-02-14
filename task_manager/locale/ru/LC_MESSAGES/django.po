@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 17:09+0300\n"
+"POT-Creation-Date: 2025-02-08 00:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,120 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: task_manager/templates/layout.html:12 task_manager/templates/layout.html:21
+
+#: task_manager/mixins.py:14
+msgid "You are not authorized! Please log in to your account."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: task_manager/mixins.py:24
+msgid "You have no permission to edit another user."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: task_manager/templates/layout.html:13 task_manager/templates/layout.html:22
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/layout.html:27
+#: task_manager/templates/layout.html:28
+#: task_manager/templates/user_list.html:11
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/layout.html:33
-msgid "Login"
+#: task_manager/templates/layout.html:35
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/layout.html:41
+msgid "Labels"
+msgstr "Метки"
+
+#: task_manager/templates/layout.html:47
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/templates/layout.html:55
+msgid "Log out"
+msgstr "Выход"
+
+#: task_manager/templates/layout.html:63 task_manager/templates/login.html:14
+msgid "Log in"
 msgstr "Вход"
 
-#: task_manager/templates/layout.html:39
+#: task_manager/templates/layout.html:69
 msgid "Sign up"
 msgstr "Регистрация"
+
+#: task_manager/templates/login.html:10
+msgid "Access"
+msgstr "Вход"
+
+#: task_manager/templates/user_create.html:9
+msgid "Create account"
+msgstr "Регистрация"
+
+#: task_manager/templates/user_create.html:13
+msgid "Create"
+msgstr "Зарегистрировать"
+
+#: task_manager/templates/user_delete.html:9
+msgid "Delete account"
+msgstr "Удаление пользователя"
+
+#: task_manager/templates/user_delete.html:11
+#, python-format
+msgid ""
+"\n"
+"    Are you sure you want to delete %(full_name)s?\n"
+"    "
+msgstr ""
+"\n"
+"    Вы уверены, что хотите удалить %(full_name)s?\n"
+"    "
+
+#: task_manager/templates/user_delete.html:18
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/templates/user_list.html:16
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/user_list.html:17
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/user_list.html:18
+msgid "Created"
+msgstr "Дата создания"
+
+#: task_manager/templates/user_list.html:32
+#: task_manager/templates/user_update.html:13
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/templates/user_list.html:37
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/templates/user_update.html:9
+msgid "Update account"
+msgstr "Изменение пользователя"
+
+#: task_manager/views.py:21
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:28
+msgid "You are logged out"
+msgstr "Вы разлогинены"
+
+#: task_manager/views.py:43
+msgid "Account has been successfully created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/views.py:57
+msgid "Account has been successfully updated"
+msgstr "Пользователь успешно изменен"
+
+#: task_manager/views.py:70
+msgid "Account has been successfully deleted"
+msgstr "Пользователь успешно удален"

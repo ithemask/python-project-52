@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from task_manager import forms, mixins
+from task_manager import forms, mixins, models
 
 
 class IndexView(TemplateView):
@@ -68,3 +68,46 @@ class UserDeleteView(
 
     success_url = reverse_lazy('user-list')
     success_message = _('Account has been successfully deleted')
+
+
+class StatusListView(mixins.AuthRequiredMixin, ListView):
+    model = models.Status
+    ordering = 'id'
+    template_name = 'status_list.html'
+
+
+class StatusCreateView(
+    mixins.AuthRequiredMixin,
+    SuccessMessageMixin,
+    CreateView,
+):
+    form_class = forms.StatusForm
+    template_name = 'status_create.html'
+
+    success_url = reverse_lazy('status-list')
+    success_message = _('Status has been successfully created')
+
+
+class StatusUpdateView(
+    mixins.AuthRequiredMixin,
+    SuccessMessageMixin,
+    UpdateView,
+):
+    model = models.Status
+    form_class = forms.StatusForm
+    template_name = 'status_update.html'
+
+    success_url = reverse_lazy('status-list')
+    success_message = _('Status has been successfully updated')
+
+
+class StatusDeleteView(
+    mixins.AuthRequiredMixin,
+    SuccessMessageMixin,
+    DeleteView,
+):
+    model = models.Status
+    template_name = 'status_delete.html'
+
+    success_url = reverse_lazy('status-list')
+    success_message = _('Status has been successfully deleted')

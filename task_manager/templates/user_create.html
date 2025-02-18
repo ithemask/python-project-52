@@ -6,11 +6,11 @@
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
-  <h1 class="my-4">{% translate 'Create account' %}</h1>
+  <h1 class="my-4">{% translate 'Registration' %}</h1>
   <form action="{% url 'user-create' %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button _('Create') button_type='submit' %}
+    {% bootstrap_button _('Create account') button_type='submit' %}
   </form>
 </div>
 {% endblock %}

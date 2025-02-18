@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load bootstrap_icons %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <div class="my-4">{% bootstrap_messages %}</div>
+  <h1 class="my-4">{% translate 'Statuses' %}</h1>
+  <a class="btn btn-primary mb-3" href="{% url 'status-create' %}">{% translate 'Create status' %}</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>{% translate 'Name' %}</th>
+        <th>{% translate 'Created' %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for status in status_list %}
+      <tr class="align-middle">
+        <td>{{ status.id }}</td>
+        <td>{{ status.name }}</td>
+        <td>{{ status.created_at|date:'d.m.Y G:i' }}</td>
+        <td>
+          <a href="{% url 'status-update' status.id %}" class="text-decoration-none">
+            {% bs_icon 'pen-fill' size='1em' %}
+            {% translate 'Update' %}
+          </a>
+          <br>
+          <a href="{% url 'status-delete' status.id %}" class="text-decoration-none">
+            {% bs_icon 'x-circle-fill' size='1em' %}
+            {% translate 'Delete' %}
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

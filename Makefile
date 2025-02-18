@@ -4,6 +4,10 @@ makemigrations:
 	uv run python manage.py makemigrations
 migrate:
 	uv run python manage.py migrate
+makemessages:
+	uv run django-admin makemessages -l ru
+compilemessages:
+	uv run django-admin compilemessages
 start-dev:
 	uv run python manage.py runserver
 start-prod:

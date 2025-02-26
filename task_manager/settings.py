@@ -18,7 +18,7 @@ ALLOWED_HOSTS = [
     'testserver',
     'webserver',
     '127.0.0.1',
-    'task-manager-34z9.onrender.com',
+    'task-manager-js27.onrender.com',
 ]
 
 INSTALLED_APPS = [

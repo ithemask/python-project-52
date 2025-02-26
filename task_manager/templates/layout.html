@@ -14,81 +14,80 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   <header>
-    <div class="px-3 py-3 bg-dark text-white">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="{% url 'index' %}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            {% bs_icon 'badge-tm' size='2em' extra_classes='mx-2' %}
-            <span class="fs-5">{% translate 'Task manager' %}</span>
-          </a>
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            <li>
-              <a href="{% url 'user-list' %}" class="nav-link text-white">
-                {% bs_icon 'people-fill' size='1.5em' %}
-                {% translate 'Users' %}
-              </a>
-            </li>
-            {% if user.is_authenticated %}
-            <li>
-              <a href="{% url 'status-list' %}" class="nav-link text-white">
-                {% bs_icon 'flag-fill' size='1.5em' %}
-                {% translate 'Statuses' %}
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'label-list' %}" class="nav-link text-white">
-                {% bs_icon 'geo-alt-fill' size='1.5em' %}
-                {% translate 'Labels' %}
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'task-list' %}" class="nav-link text-white">
-                {% bs_icon 'clipboard-check-fill' size='1.5em' %}
-                {% translate 'Tasks' %}
-              </a>
-            </li>
-            <li>
-              <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-link nav-link text-white">
-                  {% bs_icon 'door-open-fill' size='1.5em' %}
-                  {% translate 'Log out' %}
-                </button>
-              </form>
-            </li>
-            {% else %}
-            <li>
-              <a href="{% url 'login' %}" class="nav-link text-white">
-                {% bs_icon 'key-fill' size='1.5em' %}
-                {% translate 'Log in' %}
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'user-create' %}" class="nav-link text-white">
-                {% bs_icon 'person-fill-add' size='1.5em' %}
-                {% translate 'Sign up' %}
-              </a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+      <a href="{% url 'index' %}" class="navbar-brand d-flex align-items-center my-2 my-lg-0">
+        {% bs_icon 'badge-tm' size='2em' %}
+        <span class="mx-2">{% translate 'Task manager' %}</span>
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-expanded="true">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse show justify-content-end" id="navbarToggleExternalContent">
+        <ul class="navbar-nav my-md-0">
+          <li class="nav-item">
+            <a href="{% url 'user-list' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'people-fill' size='1.5em' %}
+              <span class="mx-1">{% translate 'Users' %}</span>
+            </a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'status-list' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'flag-fill' size='1.5em' %}
+              <span class="mx-1">{% translate 'Statuses' %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'label-list' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'geo-alt-fill' size='1.5em' %}
+              <span class="mx-1">{% translate 'Labels' %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'task-list' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'clipboard-check-fill' size='1.5em' %}
+              <span class="mx-1">{% translate 'Tasks' %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-link text-white d-flex align-items-center">
+                {% bs_icon 'door-open-fill' size='1.5em' %}
+                <span class="mx-1">{% translate 'Lоg out' %}</span>
+              </button>
+            </form>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'key-fill' size='1.5em' %}
+              <span class="mx-1">{% translate 'Lоg in' %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'user-create' %}" class="nav-link text-white d-flex align-items-center">
+              {% bs_icon 'person-fill-add' size='1.5em' %}
+              <span class="mx-1">{% translate 'Sign up' %}</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
-    </div>
+    </nav>
   </header>
   <main>
     {% block content %}{% endblock %}
   </main>
-  <footer class="mt-auto">
-    <div class="container">
-      <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-          <span class="text-muted">© 2025 Hexlet-project</span>
-        </div>
-        <div class="justify-content-end d-flex">
-          <a href="https://github.com/ithemask/python-project-52">
-            {% bs_icon 'github' size='1.5em' color='grey' %}
-          </a>
-        </div>
+  <footer class="mt-auto px-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center px-5 py-3 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <span class="text-muted small">© 2025 Hexlet-project</span>
+      </div>
+      <div class="d-flex justify-content-end">
+        <a href="https://github.com/ithemask/python-project-52">
+          {% bs_icon 'github' size='1.5em' color='grey' %}
+        </a>
       </div>
     </div>
   </footer>

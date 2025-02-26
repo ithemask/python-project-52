@@ -3,10 +3,10 @@ from task_manager.models import Status
 
 
 class StatusCreationTestCase(TestCase):
-    fixtures = ['user.json', 'status.json']
+    fixtures = ['user.json']
     create_url = '/statuses/create/'
 
-    def test_creating_without_logging_in(self):
+    def test_creating_status_without_logging_in(self):
         redirect_url = '/login/'
         error_message = \
             'You are not authorized! Please log in to your account.'
@@ -14,7 +14,7 @@ class StatusCreationTestCase(TestCase):
         get_response = self.client.get(self.create_url, follow=True)
         post_response = self.client.post(
             self.create_url,
-            {'name': 'complete'},
+            {'name': 'new'},
             follow=True,
         )
 
@@ -22,14 +22,17 @@ class StatusCreationTestCase(TestCase):
         self.assertContains(get_response, error_message)
         self.assertRedirects(post_response, redirect_url)
         self.assertContains(post_response, error_message)
-        self.assertFalse(Status.objects.filter(name='complete').exists())
+        self.assertFalse(Status.objects.filter(name='new').exists())
 
-    def test_default_creation(self):
-        self.client.login(username='littlefinger', password='111')
+    def test_default_status_creation(self):
+        self.client.login(
+            username='lord_of_the_seven_kingdoms',
+            password='j1s8',
+        )
         get_response = self.client.get(self.create_url, follow=True)
         post_response = self.client.post(
             self.create_url,
-            {'name': 'complete'},
+            {'name': 'new'},
             follow=True,
         )
 
@@ -39,10 +42,15 @@ class StatusCreationTestCase(TestCase):
             post_response,
             'Status has been successfully created',
         )
-        self.assertTrue(Status.objects.filter(name='complete').exists())
+        self.assertTrue(Status.objects.filter(name='new').exists())
 
-    def test_creating_with_occupied_name(self):
-        self.client.login(username='littlefinger', password='111')
+    def test_creating_status_with_occupied_name(self):
+        Status.objects.create(name='new')
+
+        self.client.login(
+            username='lord_of_the_seven_kingdoms',
+            password='j1s8',
+        )
         response = self.client.post(
             self.create_url,
             {'name': 'new'},
@@ -59,11 +67,14 @@ class StatusCreationTestCase(TestCase):
             1,
         )
 
-    def test_creating_with_too_long_name(self):
-        self.client.login(username='littlefinger', password='111')
+    def test_creating_status_with_too_long_name(self):
+        self.client.login(
+            username='lord_of_the_seven_kingdoms',
+            password='j1s8',
+        )
         response = self.client.post(
             self.create_url,
-            {'name': 'very very very very very very very very very long name'},
+            {'name': 'very very very very very very very very very very new'},
             follow=True,
         )
 
@@ -72,46 +83,47 @@ class StatusCreationTestCase(TestCase):
             'name',
             'Name is too long. Maximum length is 50 characters.',
         )
-        self.assertEqual(
-            Status.objects.all().count(),
-            2,
+        self.assertFalse(
+            Status.objects.filter(name='very very very very very very '
+                                       'very very very very new').exists()
         )
 
 
 class StatusUpdatingTestCase(TestCase):
     fixtures = ['user.json', 'status.json']
-    update_url = '/statuses/2/update/'
+    update_url = '/statuses/4/update/'
 
-    def test_updating_without_logging_in(self):
+    def test_updating_status_without_logging_in(self):
         redirect_url = '/login/'
         error_message = \
             'You are not authorized! Please log in to your account.'
+        status = Status.objects.get(id=4)
 
         get_response = self.client.get(self.update_url, follow=True)
         post_response = self.client.post(
             self.update_url,
-            {'name': 'complete'},
+            {'name': 'delayed'},
             follow=True,
         )
+
+        updated_status = Status.objects.get(id=4)
 
         self.assertRedirects(get_response, redirect_url)
         self.assertContains(get_response, error_message)
         self.assertRedirects(post_response, redirect_url)
         self.assertContains(post_response, error_message)
-        self.assertEqual(Status.objects.get(id=2).name, 'in progress')
+        self.assertEqual(status, updated_status)
 
-    def test_default_updating(self):
-        status = Status.objects.get(id=2)
-
-        self.client.login(username='littlefinger', password='111')
+    def test_default_status_updating(self):
+        self.client.login(username='brienne_the_beauty', password='s6p4')
         get_response = self.client.get(self.update_url, follow=True)
         post_response = self.client.post(
             self.update_url,
-            {'name': 'complete'},
+            {'name': 'delayed'},
             follow=True,
         )
 
-        updated_status = Status.objects.get(id=2)
+        updated_status = Status.objects.get(id=4)
 
         self.assertEqual(get_response.status_code, 200)
         self.assertRedirects(post_response, '/statuses/')
@@ -119,4 +131,53 @@ class StatusUpdatingTestCase(TestCase):
             post_response,
             'Status has been successfully updated',
         )
-        self.assertNotEqual(status.name, updated_status.name)
+        self.assertEqual(updated_status.name, 'delayed')
+
+
+class StatusDeletingTestCase(TestCase):
+    fixtures = ['user.json', 'status.json', 'task.json']
+
+    def test_deleting_status_without_logging_in(self):
+        delete_url = '/statuses/2/delete/'
+        redirect_url = '/login/'
+        error_message = \
+            'You are not authorized! Please log in to your account.'
+
+        get_response = self.client.get(delete_url, follow=True)
+        post_response = self.client.post(delete_url, follow=True)
+
+        self.assertRedirects(get_response, redirect_url)
+        self.assertContains(get_response, error_message)
+        self.assertRedirects(post_response, redirect_url)
+        self.assertContains(post_response, error_message)
+        self.assertTrue(Status.objects.filter(name='in progress').exists())
+
+    def test_default_status_deletion(self):
+        delete_url = '/statuses/2/delete/'
+
+        self.client.login(username='dragonmother', password='u5t7')
+        get_response = self.client.get(delete_url, follow=True)
+        post_response = self.client.post(delete_url, follow=True)
+
+        self.assertEqual(get_response.status_code, 200)
+        self.assertRedirects(post_response, '/statuses/')
+        self.assertContains(
+            post_response,
+            'Status has been successfully deleted',
+        )
+        self.assertFalse(Status.objects.filter(name='in progress').exists())
+
+    def test_deleting_bound_status(self):
+        delete_url = '/statuses/1/delete/'
+
+        self.client.login(username='dragonmother', password='u5t7')
+        get_response = self.client.get(delete_url, follow=True)
+        post_response = self.client.post(delete_url, follow=True)
+
+        self.assertEqual(get_response.status_code, 200)
+        self.assertRedirects(post_response, '/statuses/')
+        self.assertContains(
+            post_response,
+            'Status cannot be deleted because it is being used',
+        )
+        self.assertTrue(Status.objects.filter(name='new').exists())

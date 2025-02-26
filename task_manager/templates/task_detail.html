@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load bootstrap_icons %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">{% translate 'Task review' %}</h1>
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      <h2>{{ task.name }}</h2>
+    </div>
+    <div class="card-body bg-light">
+      <p>{{ task.description }}</p>
+      <hr>
+      <div class="container">
+        <div class="row p-1">
+          <div class="col">{% translate 'Author' %}</div>
+          <div class="col">{{ task.author }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% translate 'Executor' %}</div>
+          <div class="col">{{ task.executor|default_if_none:''}}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% translate 'Status' %}</div>
+          <div class="col">{{ task.status }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% translate 'Created' %}</div>
+          <div class="col">{{ task.created_at|date:'d.m.Y G:i' }}</div>
+        </div>
+        <div class="row p-1 text-end">
+          <div class="col">
+            <a href="{% url 'task-update' task.id %}" class="text-decoration-none">
+              {% bs_icon 'pen-fill' size='1em' %}
+              {% translate 'Update' %}
+            </a>
+            <br>
+            <a href="{% url 'task-delete' task.id %}" class="text-decoration-none">
+              {% bs_icon 'x-circle-fill' size='1em' %}
+              {% translate 'Delete' %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

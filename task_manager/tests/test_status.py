@@ -102,7 +102,7 @@ class StatusUpdatingTestCase(TestCase):
         get_response = self.client.get(self.update_url, follow=True)
         post_response = self.client.post(
             self.update_url,
-            {'name': 'delayed'},
+            {'name': 'on hold'},
             follow=True,
         )
 
@@ -119,7 +119,7 @@ class StatusUpdatingTestCase(TestCase):
         get_response = self.client.get(self.update_url, follow=True)
         post_response = self.client.post(
             self.update_url,
-            {'name': 'delayed'},
+            {'name': 'on hold'},
             follow=True,
         )
 
@@ -131,11 +131,11 @@ class StatusUpdatingTestCase(TestCase):
             post_response,
             'Status has been successfully updated',
         )
-        self.assertEqual(updated_status.name, 'delayed')
+        self.assertEqual(updated_status.name, 'on hold')
 
 
 class StatusDeletingTestCase(TestCase):
-    fixtures = ['user.json', 'status.json', 'task.json']
+    fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
 
     def test_deleting_status_without_logging_in(self):
         delete_url = '/statuses/2/delete/'

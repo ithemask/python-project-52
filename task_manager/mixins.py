@@ -50,6 +50,17 @@ class StatusDeleteMixin:
             return redirect('status-list')
 
 
+class LabelDeleteMixin:
+    error_message = _('Label cannot be deleted because it is being used')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.error_message)
+            return redirect('label-list')
+
+
 class TaskDeleteMixin:
     error_message = _('Task can be deleted only by the author')
 

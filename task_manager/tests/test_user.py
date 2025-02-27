@@ -232,7 +232,7 @@ class UserUpdatingTestCase(TestCase):
 
 
 class UserDeletionTestCase(TestCase):
-    fixtures = ['user.json', 'status.json', 'task.json']
+    fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
 
     def test_deleting_user_without_logging_in(self):
         delete_url = '/users/1/delete/'

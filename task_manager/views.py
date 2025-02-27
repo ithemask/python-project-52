@@ -113,6 +113,50 @@ class StatusDeleteView(
     success_message = _('Status has been successfully deleted')
 
 
+class LabelListView(mixins.AuthRequiredMixin, ListView):
+    model = models.Label
+    ordering = 'id'
+    template_name = 'label_list.html'
+
+
+class LabelCreateView(
+    mixins.AuthRequiredMixin,
+    SuccessMessageMixin,
+    CreateView,
+):
+    form_class = forms.LabelForm
+    template_name = 'label_create.html'
+
+    success_url = reverse_lazy('label-list')
+    success_message = _('Label has been successfully created')
+
+
+class LabelUpdateView(
+    mixins.AuthRequiredMixin,
+    SuccessMessageMixin,
+    UpdateView,
+):
+    model = models.Label
+    form_class = forms.LabelForm
+    template_name = 'label_update.html'
+
+    success_url = reverse_lazy('label-list')
+    success_message = _('Label has been successfully updated')
+
+
+class LabelDeleteView(
+    mixins.AuthRequiredMixin,
+    mixins.LabelDeleteMixin,
+    SuccessMessageMixin,
+    DeleteView,
+):
+    model = models.Label
+    template_name = 'label_delete.html'
+
+    success_url = reverse_lazy('label-list')
+    success_message = _('Label has been successfully deleted')
+
+
 class TaskListView(mixins.AuthRequiredMixin, ListView):
     model = models.Task
     ordering = 'id'
@@ -127,6 +171,7 @@ class TaskListView(mixins.AuthRequiredMixin, ListView):
         queryset = super().get_queryset()
         status = self.request.GET.get('status')
         executor = self.request.GET.get('executor')
+        label = self.request.GET.get('label')
         self_tasks = self.request.GET.get('self_tasks')
         if self_tasks:
             queryset = queryset.filter(author=self.request.user)
@@ -134,6 +179,8 @@ class TaskListView(mixins.AuthRequiredMixin, ListView):
             queryset = queryset.filter(status=status)
         if executor:
             queryset = queryset.filter(executor=executor)
+        if label:
+            queryset = queryset.filter(labels=label)
         return queryset
 
 

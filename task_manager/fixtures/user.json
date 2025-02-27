@@ -76,7 +76,7 @@
     "pk": 5,
     "fields": {
       "password": "pbkdf2_sha256$870000$kCaPpF2Jhyg1NDnBELY9Mm$cicAzAglPzTt7ggb1Rz4CIplc4AWBfIL1+uGhzABxYg=",
-      "last_login": "2025-02-25T10:25:10.279Z",
+      "last_login": "2025-02-26T12:18:50.189Z",
       "is_superuser": false,
       "username": "halfman",
       "email": "",

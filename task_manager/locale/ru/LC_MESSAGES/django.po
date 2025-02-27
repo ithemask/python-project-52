@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 15:53+0300\n"
+"POT-Creation-Date: 2025-02-27 21:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/forms.py:29 task_manager/forms.py:49
+#: task_manager/forms.py:29 task_manager/forms.py:49 task_manager/forms.py:69
+#: task_manager/templates/label_list.html:17
 #: task_manager/templates/status_list.html:17
 #: task_manager/templates/task_list.html:25
 msgid "Name"
@@ -30,35 +31,49 @@ msgstr "Имя"
 msgid "Status with such name already exists."
 msgstr "Статус с таким именем уже существует."
 
-#: task_manager/forms.py:34
+#: task_manager/forms.py:34 task_manager/forms.py:54
 msgid "Name is too long. Maximum length is 50 characters."
 msgstr "Имя слишком длинное. Максимальная длина составляет 50 символов."
 
-#: task_manager/forms.py:50
+#: task_manager/forms.py:53
+msgid "Label with such name already exists."
+msgstr "Метка с таким именем уже существует."
+
+#: task_manager/forms.py:70
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/forms.py:51 task_manager/forms.py:70
+#: task_manager/forms.py:71 task_manager/forms.py:91
 #: task_manager/templates/task_detail.html:28
 #: task_manager/templates/task_list.html:26
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/forms.py:52 task_manager/forms.py:75
+#: task_manager/forms.py:72 task_manager/forms.py:96
 #: task_manager/templates/task_detail.html:24
 #: task_manager/templates/task_list.html:28
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/forms.py:56
+#: task_manager/forms.py:73 task_manager/templates/label_list.html:11
+#: task_manager/templates/layout.html:43
+#: task_manager/templates/task_detail.html:37
+msgid "Labels"
+msgstr "Метки"
+
+#: task_manager/forms.py:77
 msgid "Task with such name already exists."
 msgstr "Задача с таким именем уже существует."
 
-#: task_manager/forms.py:57
+#: task_manager/forms.py:78
 msgid "Name is too long. Maximum length is 100 characters."
 msgstr "Имя слишком длинное. Максимальная длина составляет 100 символов."
 
-#: task_manager/forms.py:79
+#: task_manager/forms.py:101
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/forms.py:105
 msgid "Only my tasks"
 msgstr "Только свои задачи"
 
@@ -79,16 +94,87 @@ msgid "Status cannot be deleted because it is being used"
 msgstr "Невозможно удалить статус, потому что он используется"
 
 #: task_manager/mixins.py:54
+msgid "Label cannot be deleted because it is being used"
+msgstr "Невозможно удалить метку, потому что она используется"
+
+#: task_manager/mixins.py:65
 msgid "Task can be deleted only by the author"
 msgstr "Задачу может удалить только ее автор"
 
-#: task_manager/models.py:8
+#: task_manager/models.py:9
 msgid "first name"
 msgstr "Имя"
 
-#: task_manager/models.py:12
+#: task_manager/models.py:13
 msgid "last name"
 msgstr "Фамилия"
+
+#: task_manager/templates/label_create.html:9
+#: task_manager/templates/label_list.html:12
+msgid "Create label"
+msgstr "Создать метку"
+
+#: task_manager/templates/label_create.html:13
+#: task_manager/templates/status_create.html:13
+#: task_manager/templates/task_create.html:13
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/templates/label_delete.html:9
+msgid "Delete label"
+msgstr "Удаление метки"
+
+#: task_manager/templates/label_delete.html:11
+#: task_manager/templates/status_delete.html:11
+#: task_manager/templates/task_delete.html:11
+#, python-format
+msgid ""
+"\n"
+"    Are you sure you want to delete %(name)s?\n"
+"    "
+msgstr ""
+"\n"
+"    Вы уверены, что хотите удалить %(name)s?\n"
+"    "
+
+#: task_manager/templates/label_delete.html:18
+#: task_manager/templates/status_delete.html:18
+#: task_manager/templates/task_delete.html:18
+#: task_manager/templates/user_delete.html:18
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/templates/label_list.html:18
+#: task_manager/templates/status_list.html:18
+#: task_manager/templates/task_detail.html:32
+#: task_manager/templates/task_list.html:29
+#: task_manager/templates/user_list.html:18
+msgid "Created"
+msgstr "Дата создания"
+
+#: task_manager/templates/label_list.html:31
+#: task_manager/templates/label_update.html:13
+#: task_manager/templates/status_list.html:31
+#: task_manager/templates/status_update.html:13
+#: task_manager/templates/task_detail.html:51
+#: task_manager/templates/task_list.html:45
+#: task_manager/templates/task_update.html:13
+#: task_manager/templates/user_list.html:32
+#: task_manager/templates/user_update.html:13
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/templates/label_list.html:36
+#: task_manager/templates/status_list.html:36
+#: task_manager/templates/task_detail.html:56
+#: task_manager/templates/task_list.html:50
+#: task_manager/templates/user_list.html:37
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/templates/label_update.html:9
+msgid "Update label"
+msgstr "Изменение метки"
 
 #: task_manager/templates/layout.html:13 task_manager/templates/layout.html:20
 msgid "Task manager"
@@ -103,10 +189,6 @@ msgstr "Пользователи"
 #: task_manager/templates/status_list.html:11
 msgid "Statuses"
 msgstr "Статусы"
-
-#: task_manager/templates/layout.html:43
-msgid "Labels"
-msgstr "Метки"
 
 #: task_manager/templates/layout.html:49
 #: task_manager/templates/task_list.html:11
@@ -138,56 +220,9 @@ msgstr "Войти"
 msgid "Create status"
 msgstr "Создать статус"
 
-#: task_manager/templates/status_create.html:13
-#: task_manager/templates/task_create.html:13
-msgid "Create"
-msgstr "Создать"
-
 #: task_manager/templates/status_delete.html:9
 msgid "Delete status"
 msgstr "Удаление статуса"
-
-#: task_manager/templates/status_delete.html:11
-#: task_manager/templates/task_delete.html:11
-#, python-format
-msgid ""
-"\n"
-"    Are you sure you want to delete %(name)s?\n"
-"    "
-msgstr ""
-"\n"
-"    Вы уверены, что хотите удалить %(name)s?\n"
-"    "
-
-#: task_manager/templates/status_delete.html:18
-#: task_manager/templates/task_delete.html:18
-#: task_manager/templates/user_delete.html:18
-msgid "Yes, delete"
-msgstr "Да, удалить"
-
-#: task_manager/templates/status_list.html:18
-#: task_manager/templates/task_detail.html:32
-#: task_manager/templates/task_list.html:29
-#: task_manager/templates/user_list.html:18
-msgid "Created"
-msgstr "Дата создания"
-
-#: task_manager/templates/status_list.html:31
-#: task_manager/templates/status_update.html:13
-#: task_manager/templates/task_detail.html:39
-#: task_manager/templates/task_list.html:45
-#: task_manager/templates/task_update.html:13
-#: task_manager/templates/user_list.html:32
-#: task_manager/templates/user_update.html:13
-msgid "Update"
-msgstr "Изменить"
-
-#: task_manager/templates/status_list.html:36
-#: task_manager/templates/task_detail.html:44
-#: task_manager/templates/task_list.html:50
-#: task_manager/templates/user_list.html:37
-msgid "Delete"
-msgstr "Удалить"
 
 #: task_manager/templates/status_update.html:9
 msgid "Update status"
@@ -286,14 +321,26 @@ msgstr "Статус успешно изменен"
 msgid "Status has been successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/views.py:149
+#: task_manager/views.py:131
+msgid "Label has been successfully created"
+msgstr "Метка успешно создана"
+
+#: task_manager/views.py:144
+msgid "Label has been successfully updated"
+msgstr "Метка успешно изменена"
+
+#: task_manager/views.py:157
+msgid "Label has been successfully deleted"
+msgstr "Метка успешно удалена"
+
+#: task_manager/views.py:196
 msgid "Task has been successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/views.py:172
+#: task_manager/views.py:219
 msgid "Task has been successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/views.py:185
+#: task_manager/views.py:232
 msgid "Task has been successfully deleted"
 msgstr "Задача успешно удалена"

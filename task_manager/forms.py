@@ -41,6 +41,26 @@ class StatusForm(ModelForm):
         self.fields['name'].widget.attrs['autofocus'] = True
 
 
+class LabelForm(ModelForm):
+    class Meta:
+        model = models.Label
+        fields = ['name']
+        labels = {
+            'name': _('Name'),
+        }
+        error_messages = {
+            'name': {
+                'unique': _('Label with such name already exists.'),
+                'max_length': _('Name is too long. '
+                                'Maximum length is 50 characters.'),
+            },
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['autofocus'] = True
+
+
 class TaskForm(ModelForm):
     class Meta:
         model = models.Task
@@ -50,6 +70,7 @@ class TaskForm(ModelForm):
             'description': _('Description'),
             'status': _('Status'),
             'executor': _('Executor'),
+            'labels': _('Labels'),
         }
         error_messages = {
             'name': {
@@ -73,6 +94,11 @@ class TaskFilterForm(forms.Form):
     executor = forms.ModelChoiceField(
         models.User.objects.all(),
         label=_('Executor'),
+        required=False,
+    )
+    label = forms.ModelChoiceField(
+        models.Label.objects.all(),
+        label=_('Label'),
         required=False,
     )
     self_tasks = forms.BooleanField(

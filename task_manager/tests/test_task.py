@@ -3,7 +3,7 @@ from task_manager.models import Task
 
 
 class TaskCreationTestCase(TestCase):
-    fixtures = ['user.json', 'status.json']
+    fixtures = ['user.json', 'status.json', 'label.json']
     create_url = '/tasks/create/'
 
     def test_creating_task_without_logging_in(self):
@@ -18,6 +18,7 @@ class TaskCreationTestCase(TestCase):
                 'name': 'Take over the office of Hand of the king',
                 'status': 1,
                 'executor': 2,
+                'labels': [1, 3],
             },
             follow=True,
         )
@@ -43,6 +44,7 @@ class TaskCreationTestCase(TestCase):
                 'name': 'Take over the office of Hand of the king',
                 'status': 1,
                 'executor': 2,
+                'labels': [1, 3],
             },
             follow=True,
         )
@@ -57,10 +59,9 @@ class TaskCreationTestCase(TestCase):
             Task.objects.filter(name='Take over the office of '
                                      'Hand of the king').exists()
         )
-        self.assertEqual(
+        self.assertFalse(
             Task.objects.get(name='Take over the office of '
-                                     'Hand of the king').author.username,
-            'lord_of_the_seven_kingdoms',
+                                     'Hand of the king').description
         )
 
     def test_creating_task_with_no_executor(self):
@@ -73,6 +74,7 @@ class TaskCreationTestCase(TestCase):
                 'description': 'Fight as a champion in a trial by combat '
                                'against ser Gregor Clegane',
                 'status': 1,
+                'labels': [1, 3, 7],
             },
             follow=True,
         )
@@ -87,16 +89,72 @@ class TaskCreationTestCase(TestCase):
             Task.objects.filter(name='Fight for me in a trial '
                                      'by combat').exists()
         )
-        self.assertEqual(
+        self.assertFalse(
             Task.objects.get(name='Fight for me in a trial '
-                                  'by combat').author.username,
-            'halfman',
+                                  'by combat').executor
+        )
+
+    def test_creating_task_with_no_label(self):
+        self.client.login(username='lady_stoneheart', password='n4x9')
+        get_response = self.client.get(self.create_url, follow=True)
+        post_response = self.client.post(
+            self.create_url,
+            {
+                'name': 'Return Arya and Sansa to Riverrun',
+                'description': 'Locate and escort my daughters '
+                               'safely back to Riverrun',
+                'status': 1,
+                'executor': 8,
+            },
+            follow=True,
+        )
+
+        self.assertEqual(get_response.status_code, 200)
+        self.assertRedirects(post_response, '/tasks/')
+        self.assertContains(
+            post_response,
+            'Task has been successfully created',
+        )
+        self.assertTrue(
+            Task.objects.filter(name='Return Arya and Sansa '
+                                     'to Riverrun').exists()
+        )
+        self.assertFalse(
+            Task.objects.get(name='Return Arya and Sansa '
+                                  'to Riverrun').labels.all()
+        )
+
+    def test_task_author_auto_assignment(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        get_response = self.client.get(self.create_url, follow=True)
+        post_response = self.client.post(
+            self.create_url,
+            {
+                'name': "Join the Night's Watch",
+                'description': 'Depart for the Wall with Benjen Stark '
+                               'and take the black',
+                'status': 1,
+                'executor': 4,
+                'labels': [4, 6],
+            },
+            follow=True,
+        )
+
+        self.assertEqual(get_response.status_code, 200)
+        self.assertRedirects(post_response, '/tasks/')
+        self.assertContains(
+            post_response,
+            'Task has been successfully created',
+        )
+        self.assertEqual(
+            Task.objects.get(name="Join the Night's Watch").author.username,
+            'quiet_wolf',
         )
 
     def test_creating_task_with_occupied_name(self):
         Task.objects.create(
             name="Join the Night's Watch",
-            status_id=2,
+            status_id=3,
             executor_id=4,
         )
 
@@ -123,7 +181,7 @@ class TaskCreationTestCase(TestCase):
 
 
 class TaskUpdatingTestCase(TestCase):
-    fixtures = ['user.json', 'status.json', 'task.json']
+    fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
     update_url = '/tasks/5/update/'
 
     def test_updating_task_without_logging_in(self):
@@ -141,6 +199,7 @@ class TaskUpdatingTestCase(TestCase):
                                'against ser Gregor Clegane',
                 'status': 2,
                 'executor': 9,
+                'labels': [1, 3, 7],
             },
             follow=True,
         )
@@ -164,6 +223,7 @@ class TaskUpdatingTestCase(TestCase):
                                'against ser Gregor Clegane',
                 'status': 2,
                 'executor': 9,
+                'labels': [1, 3, 7],
             },
             follow=True,
         )
@@ -181,7 +241,7 @@ class TaskUpdatingTestCase(TestCase):
 
 
 class TaskDeletingTestCase(TestCase):
-    fixtures = ['user.json', 'status.json', 'task.json']
+    fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
     delete_url = '/tasks/4/delete/'
 
     def test_deleting_task_without_logging_in(self):

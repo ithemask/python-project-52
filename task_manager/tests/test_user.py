@@ -118,6 +118,30 @@ class UserCreationTestCase(TestCase):
         self.assertFalse(User.objects.filter(username='beggar_king').exists())
 
 
+class UserViewingTestCase(TestCase):
+    fixtures = ['user.json']
+    list_url = '/users/'
+
+    def test_viewing_user_list_without_logging_in(self):
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['user_list'],
+            User.objects.all(),
+        )
+
+    def test_default_user_list_viewing(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['user_list'],
+            User.objects.all(),
+        )
+
+
 class UserUpdatingTestCase(TestCase):
     fixtures = ['user.json']
 

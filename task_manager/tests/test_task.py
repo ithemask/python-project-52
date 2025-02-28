@@ -180,6 +180,108 @@ class TaskCreationTestCase(TestCase):
         )
 
 
+class TaskViewingTestCase(TestCase):
+    fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
+    list_url = '/tasks/'
+    detail_url = '/tasks/1/'
+
+    def test_viewing_task_list_without_logging_in(self):
+        redirect_url = '/login/'
+        error_message = \
+            'You are not authorized! Please log in to your account.'
+
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertRedirects(response, redirect_url)
+        self.assertContains(response, error_message)
+
+    def test_viewing_task_detail_without_logging_in(self):
+        redirect_url = '/login/'
+        error_message = \
+            'You are not authorized! Please log in to your account.'
+
+        response = self.client.get(self.detail_url, follow=True)
+
+        self.assertRedirects(response, redirect_url)
+        self.assertContains(response, error_message)
+
+    def test_default_task_list_viewing(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['task_list'],
+            Task.objects.all(),
+        )
+
+    def test_default_task_detail_viewing(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        response = self.client.get(self.detail_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.context['task'],
+            Task.objects.get(id=1),
+        )
+
+    def test_task_filtering_by_status(self):
+        self.client.login(username='lady_stoneheart', password='n4x9')
+        response = self.client.get(
+            self.list_url,
+            query_params={'status': 3},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['task_list'],
+            Task.objects.filter(id__in=[1, 2, 3]),
+        )
+
+    def test_task_filtering_by_executor(self):
+        self.client.login(username='lady_stoneheart', password='n4x9')
+        response = self.client.get(
+            self.list_url,
+            query_params={'executor': 8},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['task_list'],
+            Task.objects.filter(id__in=[3, 4]),
+        )
+
+    def test_task_filtering_by_label(self):
+        self.client.login(username='lady_stoneheart', password='n4x9')
+        response = self.client.get(
+            self.list_url,
+            query_params={'label': 3},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['task_list'],
+            Task.objects.filter(id__in=[1, 3, 5]),
+        )
+
+    def test_task_filtering_with_self_tasks_on(self):
+        self.client.login(username='lady_stoneheart', password='n4x9')
+        response = self.client.get(
+            self.list_url,
+            query_params={'self_tasks': True},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['task_list'],
+            Task.objects.filter(id__in=[3, 4]),
+        )
+
+
 class TaskUpdatingTestCase(TestCase):
     fixtures = ['user.json', 'status.json', 'label.json', 'task.json']
     update_url = '/tasks/5/update/'

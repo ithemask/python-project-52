@@ -89,6 +89,31 @@ class LabelCreationTestCase(TestCase):
         )
 
 
+class LabelViewingTestCase(TestCase):
+    fixtures = ['user.json', 'label.json']
+    list_url = '/labels/'
+
+    def test_viewing_label_list_without_logging_in(self):
+        redirect_url = '/login/'
+        error_message = \
+            'You are not authorized! Please log in to your account.'
+
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertRedirects(response, redirect_url)
+        self.assertContains(response, error_message)
+
+    def test_default_label_list_viewing(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['label_list'],
+            Label.objects.all(),
+        )
+
+
 class LabelUpdatingTestCase(TestCase):
     fixtures = ['user.json', 'label.json']
     update_url = '/labels/7/update/'

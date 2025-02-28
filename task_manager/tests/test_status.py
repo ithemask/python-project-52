@@ -89,6 +89,31 @@ class StatusCreationTestCase(TestCase):
         )
 
 
+class StatusViewingTestCase(TestCase):
+    fixtures = ['user.json', 'status.json']
+    list_url = '/statuses/'
+
+    def test_viewing_status_list_without_logging_in(self):
+        redirect_url = '/login/'
+        error_message = \
+            'You are not authorized! Please log in to your account.'
+
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertRedirects(response, redirect_url)
+        self.assertContains(response, error_message)
+
+    def test_default_status_list_viewing(self):
+        self.client.login(username='quiet_wolf', password='a8v3')
+        response = self.client.get(self.list_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['status_list'],
+            Status.objects.all(),
+        )
+
+
 class StatusUpdatingTestCase(TestCase):
     fixtures = ['user.json', 'status.json']
     update_url = '/statuses/4/update/'

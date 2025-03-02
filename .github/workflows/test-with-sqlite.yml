@@ -1,0 +1,51 @@
+name: Test with SQLite
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt coverage
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: sqlite:///db.sqlite3
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          python manage.py migrate
+
+      - name: Run tests with coverage
+        env:
+          DATABASE_URL: sqlite:///db.sqlite3
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          coverage run --source='.' manage.py test
+          coverage xml
+
+      - name: Upload coverage to Code Climate
+        uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: coverage xml
+          coverageLocations: |
+            ${{ github.workspace }}/coverage.xml:coverage.py

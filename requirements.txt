@@ -15,6 +15,7 @@ packaging==24.2
 psycopg2-binary==2.9.10
 python-dotenv==1.0.1
 requests==2.32.3
+rollbar==1.2.0
 sqlparse==0.5.3
 typing-extensions==4.12.2
 urllib3==2.3.0

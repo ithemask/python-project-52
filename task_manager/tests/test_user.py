@@ -128,7 +128,7 @@ class UserViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['user_list'],
-            User.objects.all(),
+            User.objects.all().order_by('id'),
         )
 
     def test_default_user_list_viewing(self):
@@ -138,7 +138,7 @@ class UserViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['user_list'],
-            User.objects.all(),
+            User.objects.all().order_by('id'),
         )
 
 

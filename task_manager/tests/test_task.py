@@ -212,7 +212,7 @@ class TaskViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['task_list'],
-            Task.objects.all(),
+            Task.objects.all().order_by('id'),
         )
 
     def test_default_task_detail_viewing(self):
@@ -236,7 +236,7 @@ class TaskViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['task_list'],
-            Task.objects.filter(id__in=[1, 2, 3]),
+            Task.objects.filter(id__in=[1, 2, 3]).order_by('id'),
         )
 
     def test_task_filtering_by_executor(self):
@@ -250,7 +250,7 @@ class TaskViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['task_list'],
-            Task.objects.filter(id__in=[3, 4]),
+            Task.objects.filter(id__in=[3, 4]).order_by('id'),
         )
 
     def test_task_filtering_by_label(self):
@@ -264,7 +264,7 @@ class TaskViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['task_list'],
-            Task.objects.filter(id__in=[1, 3, 5]),
+            Task.objects.filter(id__in=[1, 3, 5]).order_by('id'),
         )
 
     def test_task_filtering_with_self_tasks_on(self):
@@ -278,7 +278,7 @@ class TaskViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['task_list'],
-            Task.objects.filter(id__in=[3, 4]),
+            Task.objects.filter(id__in=[3, 4]).order_by('id'),
         )
 
 

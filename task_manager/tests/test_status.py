@@ -110,7 +110,7 @@ class StatusViewingTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(
             response.context['status_list'],
-            Status.objects.all(),
+            Status.objects.all().order_by('id'),
         )
 
 

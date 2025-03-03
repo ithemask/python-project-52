@@ -8,4 +8,40 @@
 <div class="container wrapper flex-grow-1">
   <div class="my-4">{% bootstrap_messages %}</div>
 </div>
+<div class="container my-5">
+  <div class="p-5 text-center bg-light rounded-3">
+    <h1 class="display-4 fw-bold">{% translate 'Welcome to the Task Manager!' %}</h1>
+    <p class="fs-5 mt-4">
+      {% translate 'Organize your tasks efficiently and achieve more with our convenient tool.' %}
+    </p>
+    <ul class="list-unstyled fs-5 mt-4 text-start mx-auto" style="max-width: 600px;">
+      <li class="mb-2">
+        ✅
+        <strong>{% translate 'Registration' %}:</strong>
+        {% translate 'Create your account to view and save tasks.' %}
+      </li>
+      <li class="mb-2">
+        ✅
+        <strong>{% translate 'Task Creation' %}:</strong>
+        {% translate 'Easily add, edit, and delete tasks.' %}
+      </li>
+      <li class="mb-2">
+        ✅
+        <strong>{% translate 'Statuses' %}:</strong>
+        {% translate 'Track progress with custom statuses.' %}
+      </li>
+      <li class="mb-2">
+        ✅
+        <strong>{% translate 'Labels' %}:</strong>
+        {% translate 'Organize tasks using tags and labels.' %}
+      </li>
+      <li class="mb-2">
+        ✅
+        <strong>{% translate 'Task Filtering' %}:</strong>
+        {% translate 'Quickly find tasks using various filters.' %}
+      </li>
+    </ul>
+    <a href="{% url 'task-create' %}" class="btn btn-primary btn-lg mt-4">{% translate 'Get Started!' %}</a>
+  </div>
+</div>
 {% endblock %}

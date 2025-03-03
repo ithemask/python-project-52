@@ -1,0 +1,58 @@
+[
+  {
+    "model": "label.label",
+    "pk": 1,
+    "fields": {
+      "name": "urgent",
+      "created_at": "2025-03-03T12:17:08.085Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 2,
+    "fields": {
+      "name": "not urgent",
+      "created_at": "2025-03-03T12:17:16.486Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 3,
+    "fields": {
+      "name": "high priority",
+      "created_at": "2025-03-03T12:17:25.103Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 4,
+    "fields": {
+      "name": "medium priority",
+      "created_at": "2025-03-03T12:17:35.466Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 5,
+    "fields": {
+      "name": "low priority",
+      "created_at": "2025-03-03T12:17:45.199Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 6,
+    "fields": {
+      "name": "easy",
+      "created_at": "2025-03-03T12:17:53.138Z"
+    }
+  },
+  {
+    "model": "label.label",
+    "pk": 7,
+    "fields": {
+      "name": "hard",
+      "created_at": "2025-03-03T12:18:00.549Z"
+    }
+  }
+]

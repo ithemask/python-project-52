@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-03 14:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: apps/core/mixins.py:14
+msgid "You are not authorized! Please log in to your account."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: apps/core/views.py:18
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: apps/core/views.py:25
+msgid "You are logged out"
+msgstr "Вы разлогинены"
+
+#: apps/label/forms.py:11 apps/status/forms.py:11 apps/task/forms.py:14
+#: templates/label/label_list.html:17 templates/status/status_list.html:17
+#: templates/task/task_list.html:25
+msgid "Name"
+msgstr "Имя"
+
+#: apps/label/forms.py:15
+msgid "Label with such name already exists."
+msgstr "Метка с таким именем уже существует."
+
+#: apps/label/forms.py:16 apps/status/forms.py:16
+msgid "Name is too long. Maximum length is 50 characters."
+msgstr "Имя слишком длинное. Максимальная длина составляет 50 символов."
+
+#: apps/label/mixins.py:8
+msgid "Label cannot be deleted because it is being used"
+msgstr "Невозможно удалить метку, потому что она используется"
+
+#: apps/label/views.py:27
+msgid "Label has been successfully created"
+msgstr "Метка успешно создана"
+
+#: apps/label/views.py:40
+msgid "Label has been successfully updated"
+msgstr "Метка успешно изменена"
+
+#: apps/label/views.py:53
+msgid "Label has been successfully deleted"
+msgstr "Метка успешно удалена"
+
+#: apps/status/forms.py:15
+msgid "Status with such name already exists."
+msgstr "Статус с таким именем уже существует."
+
+#: apps/status/mixins.py:8
+msgid "Status cannot be deleted because it is being used"
+msgstr "Невозможно удалить статус, потому что он используется"
+
+#: apps/status/views.py:27
+msgid "Status has been successfully created"
+msgstr "Статус успешно создан"
+
+#: apps/status/views.py:40
+msgid "Status has been successfully updated"
+msgstr "Статус успешно изменен"
+
+#: apps/status/views.py:53
+msgid "Status has been successfully deleted"
+msgstr "Статус успешно удален"
+
+#: apps/task/forms.py:15
+msgid "Description"
+msgstr "Описание"
+
+#: apps/task/forms.py:16 apps/task/forms.py:36
+#: templates/task/task_detail.html:28 templates/task/task_list.html:26
+msgid "Status"
+msgstr "Статус"
+
+#: apps/task/forms.py:17 apps/task/forms.py:41
+#: templates/task/task_detail.html:24 templates/task/task_list.html:28
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: apps/task/forms.py:18 templates/core/layout.html:43
+#: templates/label/label_list.html:11 templates/task/task_detail.html:37
+msgid "Labels"
+msgstr "Метки"
+
+#: apps/task/forms.py:22
+msgid "Task with such name already exists."
+msgstr "Задача с таким именем уже существует."
+
+#: apps/task/forms.py:23
+msgid "Name is too long. Maximum length is 100 characters."
+msgstr "Имя слишком длинное. Максимальная длина составляет 100 символов."
+
+#: apps/task/forms.py:46
+msgid "Label"
+msgstr "Метка"
+
+#: apps/task/forms.py:50
+msgid "Only my tasks"
+msgstr "Только свои задачи"
+
+#: apps/task/mixins.py:7
+msgid "Task can be deleted only by the author"
+msgstr "Задачу может удалить только ее автор"
+
+#: apps/task/views.py:48
+msgid "Task has been successfully created"
+msgstr "Задача успешно создана"
+
+#: apps/task/views.py:71
+msgid "Task has been successfully updated"
+msgstr "Задача успешно изменена"
+
+#: apps/task/views.py:84
+msgid "Task has been successfully deleted"
+msgstr "Задача успешно удалена"
+
+#: apps/user/mixins.py:8
+msgid "You have no permission to edit another user."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: apps/user/mixins.py:9
+msgid "User cannot be deleted because it is being used"
+msgstr "Невозможно удалить пользователя, потому что он используется"
+
+#: apps/user/models.py:8
+msgid "first name"
+msgstr "Имя"
+
+#: apps/user/models.py:12
+msgid "last name"
+msgstr "Фамилия"
+
+#: apps/user/views.py:23
+msgid "Account has been successfully created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: apps/user/views.py:37
+msgid "Account has been successfully updated"
+msgstr "Пользователь успешно изменен"
+
+#: apps/user/views.py:50
+msgid "Account has been successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: templates/core/layout.html:13 templates/core/layout.html:20
+msgid "Task manager"
+msgstr "Менеджер задач"
+
+#: templates/core/layout.html:30 templates/user/user_list.html:11
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/core/layout.html:37 templates/status/status_list.html:11
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/core/layout.html:49 templates/task/task_list.html:11
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/core/layout.html:57
+msgid "Lоg out"
+msgstr "Выход"
+
+#: templates/core/layout.html:65
+msgid "Lоg in"
+msgstr "Вход"
+
+#: templates/core/layout.html:71
+msgid "Sign up"
+msgstr "Регистрация"
+
+#: templates/core/login.html:10
+msgid "Access"
+msgstr "Вход"
+
+#: templates/core/login.html:14
+msgid "Confirm"
+msgstr "Войти"
+
+#: templates/label/label_create.html:9 templates/label/label_list.html:12
+msgid "Create label"
+msgstr "Создать метку"
+
+#: templates/label/label_create.html:13 templates/status/status_create.html:13
+#: templates/task/task_create.html:13
+msgid "Create"
+msgstr "Создать"
+
+#: templates/label/label_delete.html:9
+msgid "Delete label"
+msgstr "Удаление метки"
+
+#: templates/label/label_delete.html:11 templates/status/status_delete.html:11
+#: templates/task/task_delete.html:11
+#, python-format
+msgid ""
+"\n"
+"    Are you sure you want to delete %(name)s?\n"
+"    "
+msgstr ""
+"\n"
+"    Вы уверены, что хотите удалить %(name)s?\n"
+"    "
+
+#: templates/label/label_delete.html:18 templates/status/status_delete.html:18
+#: templates/task/task_delete.html:18 templates/user/user_delete.html:18
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: templates/label/label_list.html:18 templates/status/status_list.html:18
+#: templates/task/task_detail.html:32 templates/task/task_list.html:29
+#: templates/user/user_list.html:18
+msgid "Created"
+msgstr "Дата создания"
+
+#: templates/label/label_list.html:31 templates/label/label_update.html:13
+#: templates/status/status_list.html:31 templates/status/status_update.html:13
+#: templates/task/task_detail.html:51 templates/task/task_list.html:45
+#: templates/task/task_update.html:13 templates/user/user_list.html:32
+#: templates/user/user_update.html:13
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/label/label_list.html:36 templates/status/status_list.html:36
+#: templates/task/task_detail.html:56 templates/task/task_list.html:50
+#: templates/user/user_list.html:37
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/label/label_update.html:9
+msgid "Update label"
+msgstr "Изменение метки"
+
+#: templates/status/status_create.html:9 templates/status/status_list.html:12
+msgid "Create status"
+msgstr "Создать статус"
+
+#: templates/status/status_delete.html:9
+msgid "Delete status"
+msgstr "Удаление статуса"
+
+#: templates/status/status_update.html:9
+msgid "Update status"
+msgstr "Изменение статуса"
+
+#: templates/task/task_create.html:9 templates/task/task_list.html:12
+msgid "Create task"
+msgstr "Создать задачу"
+
+#: templates/task/task_delete.html:9
+msgid "Delete task"
+msgstr "Удаление задачи"
+
+#: templates/task/task_detail.html:10
+msgid "Task review"
+msgstr "Просмотр задачи"
+
+#: templates/task/task_detail.html:20 templates/task/task_list.html:27
+msgid "Author"
+msgstr "Автор"
+
+#: templates/task/task_list.html:17
+msgid "Show"
+msgstr "Показать"
+
+#: templates/task/task_update.html:9
+msgid "Update task"
+msgstr "Изменение задачи"
+
+#: templates/user/user_create.html:9
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/user/user_create.html:13
+msgid "Create account"
+msgstr "Зарегистрировать"
+
+#: templates/user/user_delete.html:9
+msgid "Delete account"
+msgstr "Удаление пользователя"
+
+#: templates/user/user_delete.html:11
+#, python-format
+msgid ""
+"\n"
+"    Are you sure you want to delete %(full_name)s?\n"
+"    "
+msgstr ""
+"\n"
+"    Вы уверены, что хотите удалить %(full_name)s?\n"
+"    "
+
+#: templates/user/user_list.html:16
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: templates/user/user_list.html:17
+msgid "Full name"
+msgstr "Полное имя"
+
+#: templates/user/user_update.html:9
+msgid "Update account"
+msgstr "Изменение пользователя"

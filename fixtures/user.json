@@ -1,0 +1,182 @@
+[
+  {
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$tu0K7leJOe3pSAfbc5dmw9$CZ8WXywyF7NA24lE5YRa0GhQnlpBtkWvvF0m5l3YFzg=",
+      "last_login": "2025-03-03T12:15:39.192Z",
+      "is_superuser": false,
+      "username": "lord_of_the_seven_kingdoms",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:10:13.526Z",
+      "first_name": "Robert",
+      "last_name": "Baratheon",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$6vqGycFajdIKyd4zIPrE5q$TXpv1hvl2I7ma11FQESBFsMvgghvJ2C8eVZ6qR/Eabo=",
+      "last_login": "2025-03-03T12:20:09.329Z",
+      "is_superuser": false,
+      "username": "quiet_wolf",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:10:47.000Z",
+      "first_name": "Eddard",
+      "last_name": "Stark",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$Lkdx2eqH3n2hBQrmiCO7uD$roDUMv3j1WdTa80f1FRKT82NNgsk6EFLBxrwDLpTF6o=",
+      "last_login": "2025-03-03T12:22:03.550Z",
+      "is_superuser": false,
+      "username": "lady_stoneheart",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:11:22.384Z",
+      "first_name": "Catelyn",
+      "last_name": "Stark",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$5YznIplADOL01bgxv3DFPe$iHtWg3MBiI56Ury9t6JQET6duKoh5x6QFHCm8mWOWyk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "lord_snow",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:11:58.985Z",
+      "first_name": "Jon",
+      "last_name": "Snow",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$zAXGPDPf6NOTdAZ1eInRjb$uE1M6q/U5HUt6N3N42CtpuZvxP4VB2OMJ7Lgclh/48w=",
+      "last_login": "2025-03-03T12:24:05.526Z",
+      "is_superuser": false,
+      "username": "halfman",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:12:28.866Z",
+      "first_name": "Tyrion",
+      "last_name": "Lannister",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$CZitcn86Au8UTF675FtN6C$DLUoT/W0toanAfq2h3iU22R5VFwDLNKZPHdZVjjrc8g=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "kingslayer",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:13:02.384Z",
+      "first_name": "Jaime",
+      "last_name": "Lannister",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$1E25BXS9rRdO7qfvfR8QIg$YDXsbfRZ4SCDFSqJOQ3/1L7Ab9RSWj5fi/gIw+0iZMA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dragonmother",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:13:32.712Z",
+      "first_name": "Daenerys",
+      "last_name": "Targaryen",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$IwSE09RWjVpOC3rdDPyv4Z$TdMmhNNy8cctGVIrwbgfdVZ2yoUtBcGRwBu5T+5KsjA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "brienne_the_beauty",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:14:09.629Z",
+      "first_name": "Brienne",
+      "last_name": "Tarth",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$fmHjmNDWPhcbrWKwEhJOQD$ZKISvq9CDLpuDtGTkziSmGdUkxgoaKn/F2rxffkow6s=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "red_viper",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:14:40.616Z",
+      "first_name": "Oberyn",
+      "last_name": "Martell",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$duxGTVbFpeAIBHM1i5pJcS$K0/jH37qP/iZQ5+SQpoiwpuzh7Ii3FAL/o51DHlI8UY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "frog_faced",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-03-03T12:15:17.805Z",
+      "first_name": "Janos",
+      "last_name": "Slynt",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

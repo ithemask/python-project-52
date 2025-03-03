@@ -32,6 +32,11 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_bootstrap_icons',
     'task_manager',
+    'apps.core',
+    'apps.label',
+    'apps.status',
+    'apps.task',
+    'apps.user',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +88,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'task_manager.User'
+AUTH_USER_MODEL = 'user.User'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -94,6 +99,14 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+FIXTURE_DIRS = [
+    join(BASE_DIR, 'fixtures'),
+]
+
+LOCALE_PATHS = [
+    join(BASE_DIR, 'locale'),
+]
 
 if not DEBUG:
     STATIC_ROOT = join(BASE_DIR, 'staticfiles')

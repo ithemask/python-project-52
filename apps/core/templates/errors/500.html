@@ -1,0 +1,24 @@
+<!doctype html>
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% translate '500 - Internal Server Error' %}</title>
+</head>
+<body class="bg-light">
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="text-center">
+      <h1 class="display-1 fw-bold text-danger">500</h1>
+      <p class="fs-3">{% translate 'Oops! Internal Server Error.' %}</p>
+      <p class="lead">{% translate 'We are already aware of the problem and will fix it soon!' %}</p>
+      <a href="{% url 'index' %}" class="btn btn-primary mt-3">{% translate 'Go to homepage' %}</a>
+    </div>
+  </div>
+</body>
+</html>

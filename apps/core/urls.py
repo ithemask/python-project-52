@@ -18,4 +18,16 @@ urlpatterns = [
         views.UserLogoutView.as_view(),
         name='logout',
     ),
+    path(
+        'bad-request/',
+        views.trigger_400_view,
+    ),
+    path(
+        'forbidden/',
+        views.trigger_403_view,
+    ),
+    path(
+        'causes-500/',
+        views.trigger_500_view,
+    ),
 ]

@@ -1,4 +1,3 @@
-from apps.core.mixins import AuthRequiredMixin
 from apps.user.forms import UserCreateForm, UserUpdateForm
 from apps.user.mixins import UserEditMixin
 from apps.user.models import User
@@ -24,7 +23,6 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 
 class UserUpdateView(
-    AuthRequiredMixin,
     UserEditMixin,
     SuccessMessageMixin,
     UpdateView,
@@ -38,7 +36,6 @@ class UserUpdateView(
 
 
 class UserDeleteView(
-    AuthRequiredMixin,
     UserEditMixin,
     SuccessMessageMixin,
     DeleteView,

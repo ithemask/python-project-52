@@ -1,8 +1,10 @@
 from apps.core.mixins import AuthRequiredMixin
 from apps.status.forms import StatusForm
-from apps.status.mixins import StatusDeleteMixin
 from apps.status.models import Status
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView
@@ -42,7 +44,6 @@ class StatusUpdateView(
 
 class StatusDeleteView(
     AuthRequiredMixin,
-    StatusDeleteMixin,
     SuccessMessageMixin,
     DeleteView,
 ):
@@ -51,3 +52,11 @@ class StatusDeleteView(
 
     success_url = reverse_lazy('status-list')
     success_message = _('Status has been successfully deleted')
+    error_message = _('Status cannot be deleted because it is being used')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.error_message)
+            return redirect('status-list')

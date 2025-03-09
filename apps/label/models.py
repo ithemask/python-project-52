@@ -12,8 +12,3 @@ class Label(models.Model):
 
     def __str__(self):
         return self.name
-
-    def delete(self, *args, **kwargs):
-        if self.tasks.exists():
-            raise models.ProtectedError('', self)
-        super().delete(*args, **kwargs)

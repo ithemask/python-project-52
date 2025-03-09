@@ -1,8 +1,9 @@
 from apps.core.mixins import AuthRequiredMixin
 from apps.label.forms import LabelForm
-from apps.label.mixins import LabelDeleteMixin
 from apps.label.models import Label
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView
@@ -42,7 +43,6 @@ class LabelUpdateView(
 
 class LabelDeleteView(
     AuthRequiredMixin,
-    LabelDeleteMixin,
     SuccessMessageMixin,
     DeleteView,
 ):
@@ -51,3 +51,10 @@ class LabelDeleteView(
 
     success_url = reverse_lazy('label-list')
     success_message = _('Label has been successfully deleted')
+    error_message = _('Label cannot be deleted because it is being used')
+
+    def post(self, request, *args, **kwargs):
+        if not self.get_object().tasks.exists():
+            return super().post(request, *args, **kwargs)
+        messages.error(request, self.error_message)
+        return redirect('label-list')

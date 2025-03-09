@@ -1,8 +1,9 @@
 from apps.core.mixins import AuthRequiredMixin
 from apps.task.forms import TaskForm, TaskFilterForm
-from apps.task.mixins import TaskDeleteMixin
 from apps.task.models import Task
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, DetailView
@@ -73,7 +74,6 @@ class TaskUpdateView(
 
 class TaskDeleteView(
     AuthRequiredMixin,
-    TaskDeleteMixin,
     SuccessMessageMixin,
     DeleteView,
 ):
@@ -82,3 +82,16 @@ class TaskDeleteView(
 
     success_url = reverse_lazy('task-list')
     success_message = _('Task has been successfully deleted')
+    error_message = _('Task can be deleted only by the author')
+
+    def get(self, request, *args, **kwargs):
+        if request.user != self.get_object().author:
+            messages.error(request, self.error_message)
+            return redirect('task-list')
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if request.user != self.get_object().author:
+            messages.error(request, self.error_message)
+            return redirect('task-list')
+        return super().post(request, *args, **kwargs)

@@ -9,27 +9,27 @@ urlpatterns = [
     ),
     path(
         '',
-        include('apps.core.urls'),
+        include('task_manager.core.urls'),
     ),
     path(
         'users/',
-        include('apps.user.urls'),
+        include('task_manager.user.urls'),
     ),
     path(
         'statuses/',
-        include('apps.status.urls'),
+        include('task_manager.status.urls'),
     ),
     path(
         'labels/',
-        include('apps.label.urls'),
+        include('task_manager.label.urls'),
     ),
     path(
         'tasks/',
-        include('apps.task.urls'),
+        include('task_manager.task.urls'),
     ),
 ]
 
-handler400 = 'apps.core.views.bad_request_view'
-handler403 = 'apps.core.views.permission_denied_view'
-handler404 = 'apps.core.views.page_not_found_view'
-handler500 = 'apps.core.views.server_error_view'
+handler400 = 'task_manager.core.views.bad_request_view'
+handler403 = 'task_manager.core.views.permission_denied_view'
+handler404 = 'task_manager.core.views.page_not_found_view'
+handler500 = 'task_manager.core.views.server_error_view'

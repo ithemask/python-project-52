@@ -32,11 +32,11 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_bootstrap_icons',
     'task_manager',
-    'apps.core',
-    'apps.label',
-    'apps.status',
-    'apps.task',
-    'apps.user',
+    'task_manager.core',
+    'task_manager.label',
+    'task_manager.status',
+    'task_manager.task',
+    'task_manager.user',
 ]
 
 MIDDLEWARE = [
@@ -101,11 +101,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 FIXTURE_DIRS = [
-    join(BASE_DIR, 'fixtures'),
+    join(BASE_DIR, '/task_manager/fixtures/'),
 ]
 
 LOCALE_PATHS = [
-    join(BASE_DIR, 'locale'),
+    join(BASE_DIR, '/task_manager/locale/'),
 ]
 
 if not DEBUG:

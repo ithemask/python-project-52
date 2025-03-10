@@ -34,9 +34,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = [
     "task_manager",
-    "apps.core",
-    "apps.label",
-    "apps.status",
-    "apps.task",
-    "apps.user",
+    "task_manager.core",
+    "task_manager.label",
+    "task_manager.status",
+    "task_manager.task",
+    "task_manager.user",
 ]

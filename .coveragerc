@@ -2,4 +2,4 @@
 source = task_manager
 omit =
     */migrations/*
-    */tests/*
+    */tests.py

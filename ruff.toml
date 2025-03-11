@@ -1,5 +1,13 @@
+target-version = "py312"
 line-length = 79
-extend-exclude = ["settings.py, migrations"]
+extend-exclude = [
+    "migrations",
+    "settings.py",
+]
 
-[format]
-quote-style = "single"
+[lint]
+select = ["E", "F", "W", "I", "Q"]
+
+[lint.flake8-quotes]
+inline-quotes = "single"
+multiline-quotes = "single"

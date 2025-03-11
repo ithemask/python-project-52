@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.exceptions import SuspiciousOperation, PermissionDenied
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -42,15 +41,3 @@ def page_not_found_view(request, exception=None):
 
 def server_error_view(request):
     return render(request, 'errors/500.html', status=500)
-
-
-def trigger_400_view(request):
-    raise SuspiciousOperation()
-
-
-def trigger_403_view(request):
-    raise PermissionDenied()
-
-
-def trigger_500_view(request):
-    raise Exception()

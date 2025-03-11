@@ -1,4 +1,5 @@
-from django.urls import path
+from django.conf import settings
+from django.urls import path, include
 from task_manager.core import views
 
 
@@ -18,16 +19,10 @@ urlpatterns = [
         views.UserLogoutView.as_view(),
         name='logout',
     ),
-    path(
-        'bad-request/',
-        views.trigger_400_view,
-    ),
-    path(
-        'forbidden/',
-        views.trigger_403_view,
-    ),
-    path(
-        'causes-500/',
-        views.trigger_500_view,
-    ),
 ]
+
+
+if settings.IS_TESTING:
+    urlpatterns += [
+        path('', include('task_manager.core.error_test_urls')),
+    ]

@@ -1,4 +1,5 @@
 from django.db import models
+
 from task_manager.label.models import Label
 from task_manager.status.models import Status
 from task_manager.user.models import User

@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from task_manager.label.models import Label
 
 

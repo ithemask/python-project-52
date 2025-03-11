@@ -1,6 +1,6 @@
 from django.urls import path
-from task_manager.label import views
 
+from task_manager.label import views
 
 urlpatterns = [
     path(

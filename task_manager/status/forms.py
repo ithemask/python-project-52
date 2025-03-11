@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
+
 from task_manager.status.models import Status
 
 

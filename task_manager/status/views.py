@@ -5,7 +5,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
 from task_manager.core.mixins import AuthRequiredMixin
 from task_manager.status.forms import StatusForm
 from task_manager.status.models import Status

@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UsernameField
+
 from task_manager.user.models import User
 
 

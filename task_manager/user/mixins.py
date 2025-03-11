@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
+
 from task_manager.core.mixins import AuthRequiredMixin
 
 

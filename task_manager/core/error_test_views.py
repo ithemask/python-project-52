@@ -1,4 +1,4 @@
-from django.core.exceptions import SuspiciousOperation, PermissionDenied
+from django.core.exceptions import PermissionDenied, SuspiciousOperation
 
 
 def trigger_400_view(request):

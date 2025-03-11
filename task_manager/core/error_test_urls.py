@@ -1,6 +1,6 @@
 from django.urls import path
-from task_manager.core import error_test_views
 
+from task_manager.core import error_test_views
 
 urlpatterns = [
     path(

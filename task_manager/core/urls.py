@@ -1,7 +1,7 @@
 from django.conf import settings
-from django.urls import path, include
-from task_manager.core import views
+from django.urls import include, path
 
+from task_manager.core import views
 
 urlpatterns = [
     path(

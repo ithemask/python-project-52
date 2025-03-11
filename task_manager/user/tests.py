@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from task_manager.user.models import User
 
 
